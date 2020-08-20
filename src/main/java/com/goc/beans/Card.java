@@ -36,7 +36,10 @@ public class Card {
 		this.rank = rank;
 	}
 
-	public Comparator<Card> byRank = (Card left, Card right) -> {
+	/**
+	 * Comparator to compare two cards by Rank
+	 */
+	public static final Comparator<Card> rankComparator = (Card left, Card right) -> {
 		if (left.getRank().getValue() < right.getRank().getValue()) {
 			return -1;
 		} else {
