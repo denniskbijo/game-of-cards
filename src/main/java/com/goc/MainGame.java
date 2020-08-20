@@ -7,6 +7,7 @@ import java.util.Scanner;
 import com.goc.beans.CardDeck;
 import com.goc.beans.Player;
 import com.goc.util.HandRank;
+import com.goc.util.Rank;
 
 /**
  * Basic Rules: - Use a standard deck of cards (no Joker). - Each player is
@@ -54,13 +55,20 @@ public class MainGame {
 		// Deal the cards
 		List<Player> playersWithCards = cardDeck.dealCards(players, NO_OF_CARDS, cardDeck.getCards());
 
-
+		// Show Player Hands
 		for (Player player : playersWithCards) {
 			System.out.println(player.showPlayerCards());
 		}
 
+		identifyWinner(playersWithCards);
+
+
+	}
+
+	private static void identifyWinner(List<Player> playersWithCards) {
+		// Identify Top Hands
 		HandRank handRank = null;
-		List<Player> finalPlayers = new ArrayList<>();
+		List<Player> topHandPlayers = new ArrayList<>();
 		// Identify the winner or candidates for a tie breaker
 		for (Player player : playersWithCards) {
 			HandRank newHandRank = player.calculateHandRank(player.getCards());
@@ -69,17 +77,35 @@ public class MainGame {
 			// Check if the new HandRank is bigger than previous one
 			if (handRank == null || newHandRank.getValue() < handRank.getValue()) {
 				handRank = newHandRank;
-				finalPlayers.clear();
+				topHandPlayers.clear();
 			}
-			finalPlayers.add(player);
+			topHandPlayers.add(player);
 		}
 
-		if (finalPlayers.size() > 1) {
-			System.out.println("There is a tie between " + finalPlayers.size());
+		List<Player> topCardPlayers = new ArrayList<>();
+		// Identify Players with Top Card if the highest rank is HIGHCARD
+		if (handRank.equals(HandRank.HIGHCARD)) {
+			// Check the top card among finalPlayers
+			Rank topCardRank = null;
+			// Identify the winner or candidates for a tie breaker
+			for (Player player : playersWithCards) {
+				Rank newTopCardRank = player.getTopCard(player.getCards()).getRank();
+				// Check if the new TopCard is bigger than previous one
+				if (topCardRank == null || newTopCardRank.getValue() < topCardRank.getValue()) {
+					topCardRank = newTopCardRank;
+					topCardPlayers.clear();
+				}
+				topCardPlayers.add(player);
+			}
+			if (topCardPlayers.size() > 1) {
+				System.out.println("There is a tie between " + topCardPlayers.size());
+			} else {
+				System.out.println("The winner is: " + topCardPlayers.get(0));
+			}
+
 		} else {
-			System.out.println("The winner is: " + finalPlayers.get(0));
+			System.out.println("The winner is: " + topHandPlayers.get(0));
 		}
-
 	}
 
 }
