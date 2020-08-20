@@ -44,7 +44,9 @@ public class MainGame {
 		for (Player player : players) {
 			System.out.println(player);
 		}
-		// Deal the cards
+		// Shuffle the cards
+		cardDeck.shuffle();
+
 
 	}
 
