@@ -9,7 +9,7 @@ import java.util.List;
  * @author denniskbijo
  *
  */
-class Player {
+public class Player {
 
 	private String name;
 
