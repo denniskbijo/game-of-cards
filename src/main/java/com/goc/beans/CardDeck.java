@@ -47,4 +47,21 @@ public class CardDeck {
 		Random rand = new Random();
 		Collections.shuffle(cards, rand);
 	}
+
+	public List<Player> dealCards(List<Player> players, int numOfCardsPerPlayer, List<Card> cards) {
+		// Find total number of cards to be dealt
+		int cardsToBeDealt = players.size() * numOfCardsPerPlayer;
+
+		// Iterate through shuffled cards until cardsToBeDealt are distributed
+		for (int count = 0; count < cardsToBeDealt; count++) {
+			// Find the player eligible for the card
+			Player player = players.get(count % players.size());
+			// Add card to player's hand
+			player.addCardToHand(cards.get(count % players.size()));
+		}
+
+		return players;
+
+	}
+
 }
