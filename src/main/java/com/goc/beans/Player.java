@@ -35,6 +35,10 @@ public class Player {
 		this.cards = cards;
 	}
 
+	public void addCardToHand(Card card) {
+		this.cards.add(card);
+	}
+
 	/**
 	 * Shows the cards held by the player
 	 * 
