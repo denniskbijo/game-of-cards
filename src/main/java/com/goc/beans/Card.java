@@ -1,5 +1,8 @@
 package com.goc.beans;
 
+import com.goc.util.Rank;
+import com.goc.util.Suit;
+
 /**
  * Class represents a card in the deck
  * 
@@ -7,27 +10,27 @@ package com.goc.beans;
  *
  */
 public class Card {
-	private String suit;
-	private String rank;
+	private Suit suit;
+	private Rank rank;
 
-	public Card(String cardSuit, String cardRank) {
+	public Card(Suit cardSuit, Rank cardRank) {
 		this.suit = cardSuit;
 		this.rank = cardRank;
 	}
 
-	public String getSuit() {
+	public Suit getSuit() {
 		return suit;
 	}
 
-	public void setSuit(String suit) {
+	public void setSuit(Suit suit) {
 		this.suit = suit;
 	}
 
-	public String getRank() {
+	public Rank getRank() {
 		return rank;
 	}
 
-	public void setRank(String rank) {
+	public void setRank(Rank rank) {
 		this.rank = rank;
 	}
 
