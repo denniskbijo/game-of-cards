@@ -18,6 +18,10 @@ public class Player {
 
 	private List<Card> cards = new ArrayList<>();
 
+	private HandRank handRank = null;
+
+	// GETTERS AND SETTERS
+
 	public Player(String name) {
 		this.name = name;
 	}
@@ -37,6 +41,16 @@ public class Player {
 	public void setCards(List<Card> cards) {
 		this.cards = cards;
 	}
+
+	public HandRank getHandRank() {
+		return handRank;
+	}
+
+	public void setHandRank(HandRank handRank) {
+		this.handRank = handRank;
+	}
+
+	// CUSTOM FUNCTIONS
 
 	public void addCardToHand(Card card) {
 		this.cards.add(card);
