@@ -35,6 +35,22 @@ public class Player {
 		this.cards = cards;
 	}
 
+	/**
+	 * Shows the cards held by the player
+	 * 
+	 * @return
+	 */
+	public String showPlayerCards() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(name + " has the following cards:\n");
+
+		for (Card card : cards) {
+			stringBuilder.append(card + "\n");
+		}
+
+		return stringBuilder.toString();
+	}
+
 	@Override
 	public String toString() {
 		return name;
