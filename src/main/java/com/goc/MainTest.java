@@ -6,7 +6,7 @@ import java.util.TimeZone;
 
 import org.apache.commons.lang3.time.FastDateFormat;
 
-public class DateTest {
+public class MainTest {
 	public static void main(String[] args) throws ParseException {
 		double amount = 100.45;
 		String format = String.format("%.2f", amount);
