@@ -1,7 +1,9 @@
 package com.goc.beans;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import com.goc.util.Rank;
 import com.goc.util.Suit;
@@ -36,5 +38,13 @@ public class CardDeck {
 
 	public List<Card> getCards() {
 		return cards;
+	}
+
+	/**
+	 * Shuffles the cards
+	 */
+	public void shuffle() {
+		Random rand = new Random();
+		Collections.shuffle(cards, rand);
 	}
 }
