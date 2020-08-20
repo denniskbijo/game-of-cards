@@ -1,5 +1,7 @@
 package com.goc.beans;
 
+import java.util.Comparator;
+
 import com.goc.util.Rank;
 import com.goc.util.Suit;
 
@@ -33,6 +35,14 @@ public class Card {
 	public void setRank(Rank rank) {
 		this.rank = rank;
 	}
+
+	public Comparator<Card> byRank = (Card left, Card right) -> {
+		if (left.getRank().getValue() < right.getRank().getValue()) {
+			return -1;
+		} else {
+			return 1;
+		}
+	};
 
 	@Override
 	public String toString() {
