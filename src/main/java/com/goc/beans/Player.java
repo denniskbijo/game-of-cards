@@ -168,4 +168,15 @@ public class Player {
 	public String toString() {
 		return name;
 	}
+
+	/**
+	 * Gets the top card in a Hand.
+	 * 
+	 * @param hand
+	 * @return
+	 */
+	public Card getTopCard(List<Card> hand) {
+		hand.sort(Card.rankComparator);
+		return hand.get(0);
+	}
 }
