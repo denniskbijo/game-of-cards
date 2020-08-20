@@ -68,15 +68,34 @@ public class Player {
 	 */
 	public HandRank calculateHandRank(List<Card> cards) {
 		// HighCard is the lowest rank
-		HandRank handRank = HandRank.HIGHCARD;
+		HandRank handRank = null;
 
 		if (isTrail(cards)) {
 			handRank = HandRank.TRAIL;
 		} else if (isSequence(cards)) {
 			handRank = HandRank.SEQUENCE;
+		} else if (isPair(cards)) {
+			handRank = HandRank.PAIR;
+		} else {
+			handRank = HandRank.HIGHCARD;
 		}
-
 		return handRank;
+	}
+
+	/**
+	 * Check if the hand contains a pair of cards
+	 * 
+	 * @param cards
+	 * @return
+	 */
+	private boolean isPair(List<Card> cards) {
+		for (int i = 0; i < cards.size(); i++) {
+			for (int j = i + 1; j < cards.size(); j++) {
+				if (cards.get(i).getRank().equals(cards.get(j).getRank()))
+					return true;
+			}
+		}
+		return false;
 	}
 
 	/**
