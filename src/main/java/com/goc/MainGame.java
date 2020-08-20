@@ -29,6 +29,7 @@ public class MainGame {
 
 	public static void main(String[] args) {
 		final int NO_OF_PLAYERS = 4;
+		final int NO_OF_CARDS = 3;
 		List<Player> players = new ArrayList<>();
 		CardDeck cardDeck = new CardDeck();
 
@@ -40,13 +41,23 @@ public class MainGame {
 			players.add(new Player(scan.next()));
 		}
 
-		System.out.println("The Players are ready!");
-		for (Player player : players) {
-			System.out.println(player);
-		}
 		// Shuffle the cards
 		cardDeck.shuffle();
 
+		System.out.println("Shuffling cards. The Players are ready!");
+		for (Player player : players) {
+			System.out.println(player);
+		}
+
+		// Deal the cards
+		List<Player> playersWithCards = cardDeck.dealCards(players, NO_OF_CARDS, cardDeck.getCards());
+
+		System.out.println("---------------------------------------------");
+
+		for (Player player : playersWithCards) {
+			System.out.println(player.getName());
+			player.showPlayerCards();
+		}
 
 	}
 
