@@ -1,4 +1,4 @@
-package com.ctb;
+package com.goc;
 
 import java.text.ParseException;
 import java.util.Date;
