@@ -15,7 +15,7 @@ class Player {
 
 	private List<Card> cards = new ArrayList<>();
 
-	Player(String name) {
+	public Player(String name) {
 		this.name = name;
 	}
 
@@ -27,7 +27,7 @@ class Player {
 		this.name = name;
 	}
 
-	List<Card> getCards() {
+	public List<Card> getCards() {
 		return cards;
 	}
 
