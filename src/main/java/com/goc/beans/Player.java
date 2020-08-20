@@ -82,18 +82,18 @@ public class Player {
 	 */
 	public HandRank calculateHandRank(List<Card> cards) {
 		// HighCard is the lowest rank
-		HandRank handRank = null;
+		HandRank playerHandRank = null;
 
 		if (isTrail(cards)) {
-			handRank = HandRank.TRAIL;
+			playerHandRank = HandRank.TRAIL;
 		} else if (isSequence(cards)) {
-			handRank = HandRank.SEQUENCE;
+			playerHandRank = HandRank.SEQUENCE;
 		} else if (isPair(cards)) {
-			handRank = HandRank.PAIR;
+			playerHandRank = HandRank.PAIR;
 		} else {
-			handRank = HandRank.HIGHCARD;
+			playerHandRank = HandRank.HIGHCARD;
 		}
-		return handRank;
+		return playerHandRank;
 	}
 
 	/**
