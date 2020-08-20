@@ -57,7 +57,7 @@ public class CardDeck {
 			// Find the player eligible for the card
 			Player player = players.get(count % players.size());
 			// Add card to player's hand
-			player.addCardToHand(cards.get(count % players.size()));
+			player.addCardToHand(cards.get(count));
 		}
 
 		return players;

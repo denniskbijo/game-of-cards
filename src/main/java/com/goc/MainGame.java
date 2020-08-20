@@ -56,8 +56,7 @@ public class MainGame {
 
 
 		for (Player player : playersWithCards) {
-			System.out.println(player.getName());
-			player.showPlayerCards();
+			System.out.println(player.showPlayerCards());
 		}
 
 		HandRank handRank = null;
@@ -68,16 +67,15 @@ public class MainGame {
 			player.setHandRank(newHandRank);
 
 			// Check if the new HandRank is bigger than previous one
-			if (handRank == null || newHandRank.getValue() <= handRank.getValue()) {
+			if (handRank == null || newHandRank.getValue() < handRank.getValue()) {
 				handRank = newHandRank;
 				finalPlayers.clear();
-
 			}
 			finalPlayers.add(player);
 		}
 
 		if (finalPlayers.size() > 1) {
-			System.out.println("There is a tie between " + players.size());
+			System.out.println("There is a tie between " + finalPlayers.size());
 		} else {
 			System.out.println("The winner is: " + finalPlayers.get(0));
 		}
