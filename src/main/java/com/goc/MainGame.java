@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.goc.beans.CardDeck;
 import com.goc.beans.Player;
+import com.goc.util.HandRank;
 
 /**
  * Basic Rules: - Use a standard deck of cards (no Joker). - Each player is
@@ -40,6 +41,7 @@ public class MainGame {
 		for (int i = 0; i < NO_OF_PLAYERS; i++) {
 			players.add(new Player(scan.next()));
 		}
+		scan.close();
 
 		// Shuffle the cards
 		cardDeck.shuffle();
@@ -52,11 +54,32 @@ public class MainGame {
 		// Deal the cards
 		List<Player> playersWithCards = cardDeck.dealCards(players, NO_OF_CARDS, cardDeck.getCards());
 
-		System.out.println("---------------------------------------------");
 
 		for (Player player : playersWithCards) {
 			System.out.println(player.getName());
 			player.showPlayerCards();
+		}
+
+		HandRank handRank = null;
+		List<Player> finalPlayers = new ArrayList<>();
+		// Identify the winner or candidates for a tie breaker
+		for (Player player : playersWithCards) {
+			HandRank newHandRank = player.calculateHandRank(player.getCards());
+			player.setHandRank(newHandRank);
+
+			// Check if the new HandRank is bigger than previous one
+			if (handRank == null || newHandRank.getValue() <= handRank.getValue()) {
+				handRank = newHandRank;
+				finalPlayers.clear();
+
+			}
+			finalPlayers.add(player);
+		}
+
+		if (finalPlayers.size() > 1) {
+			System.out.println("There is a tie between " + players.size());
+		} else {
+			System.out.println("The winner is: " + finalPlayers.get(0));
 		}
 
 	}
