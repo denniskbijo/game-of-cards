@@ -63,20 +63,22 @@ public class Player {
 	 */
 	public String showPlayerCards() {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(name + " Hand:\n");
+		stringBuilder.append(name).append(" Hand: ").append(System.lineSeparator());
 
 		// Sort cards by Rank
 		cards.sort(Card.rankComparator);
 
 		for (Card card : cards) {
-			stringBuilder.append(card + "\n");
+			stringBuilder.append(card).append(System.lineSeparator());
 		}
+		HandRank handRank = calculateHandRank(cards);
+		stringBuilder.append(handRank).append(System.lineSeparator());
 
 		return stringBuilder.toString();
 	}
 
 	/**
-	 * Calculate the Player hand score
+	 * Calculate the Player Hand Rank
 	 * 
 	 * @return
 	 */
