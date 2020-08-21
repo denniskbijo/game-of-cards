@@ -65,6 +65,12 @@ public class MainGame {
 
 	}
 
+	/**
+	 * Identifies the winner and if there's a tie, conducts tie-breaker rounds.
+	 * 
+	 * @param playersWithCards
+	 * @param cardDeck
+	 */
 	private static void identifyWinner(List<Player> playersWithCards,CardDeck cardDeck) {
 		// Identify Top Hands
 		List<Player> topHandPlayers = new ArrayList<>();
@@ -88,6 +94,12 @@ public class MainGame {
 		}
 	}
 
+	/**
+	 * Conducts a tie breaker with the players who are tied on the top card.
+	 * 
+	 * @param topCardPlayers
+	 * @param cardDeck
+	 */
 	private static void initiateTieBreaker(List<Player> topCardPlayers, CardDeck cardDeck) {
 		StringBuilder stringBuilder = new StringBuilder();
 		int round = 1;
@@ -108,6 +120,13 @@ public class MainGame {
 
 	}
 
+	/**
+	 * Identifies the players with the top card. This is used when multiple players
+	 * are having the same hand.
+	 * 
+	 * @param playersWithCards
+	 * @return
+	 */
 	private static List<Player> identifyTopCard(List<Player> playersWithCards) {
 		List<Player> topCardPlayers = new ArrayList<>();
 		Rank topCardRank = null;
@@ -125,6 +144,13 @@ public class MainGame {
 		return topCardPlayers;
 	}
 
+	/**
+	 * Identifies the players with the top hand.
+	 * 
+	 * @param playersWithCards
+	 * @param topHandPlayers
+	 * @return
+	 */
 	private static HandRank identifyTopHand(List<Player> playersWithCards, List<Player> topHandPlayers) {
 		HandRank handRank = null;
 		// Identify the winner or candidates for a tie breaker
