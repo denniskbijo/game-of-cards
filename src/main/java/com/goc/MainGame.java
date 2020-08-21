@@ -28,10 +28,10 @@ import com.goc.util.Rank;
  *
  */
 public class MainGame {
+	private static final int NO_OF_PLAYERS = 4;
+	private static final int NO_OF_CARDS = 3;
 
 	public static void main(String[] args) {
-		final int NO_OF_PLAYERS = 4;
-		final int NO_OF_CARDS = 3;
 		List<Player> players = new ArrayList<>();
 		CardDeck cardDeck = new CardDeck();
 
@@ -57,7 +57,7 @@ public class MainGame {
 
 		// Show Player Hands
 		for (Player player : playersWithCards) {
-			System.out.println(player.showPlayerCards());
+			System.out.println(player.showPlayerHand());
 		}
 
 		identifyWinner(playersWithCards, cardDeck);
@@ -73,8 +73,7 @@ public class MainGame {
 		// Check if there's a tie between top hands or the highest rank is HIGHCARD
 		if (topHandPlayers.size() > 1 || handRank.equals(HandRank.HIGHCARD)) {
 			// Identify Players with Top Card
-			List<Player> topCardPlayers = new ArrayList<>();
-			identifyTopCard(playersWithCards, topCardPlayers);
+			List<Player> topCardPlayers = identifyTopCard(playersWithCards);
 			
 			if (topCardPlayers.size() > 1) {
 				System.out.println("There is a tie between " + topCardPlayers.size());
@@ -90,11 +89,27 @@ public class MainGame {
 	}
 
 	private static void initiateTieBreaker(List<Player> topCardPlayers, CardDeck cardDeck) {
-		// TODO Auto-generated method stub
+		StringBuilder stringBuilder = new StringBuilder();
+		int round = 1;
+		while (topCardPlayers.size() > 1) {
+			stringBuilder.append("Tiebreaker Round: ").append(round).append(System.lineSeparator());
+			cardDeck.shuffle();
+			// Draw card for each player
+			cardDeck.dealCards(topCardPlayers, 1, cardDeck.getCards());
+			for (Player player : topCardPlayers) {
+				stringBuilder.append(player.showPlayerHand());
+
+			}
+			topCardPlayers = identifyTopCard(topCardPlayers);
+			round++;
+		}
+		System.out.println("The tiebreaker winner is: " + topCardPlayers.get(0));
+
 
 	}
 
-	private static void identifyTopCard(List<Player> playersWithCards, List<Player> topCardPlayers) {
+	private static List<Player> identifyTopCard(List<Player> playersWithCards) {
+		List<Player> topCardPlayers = new ArrayList<>();
 		Rank topCardRank = null;
 		// Check the top card among finalPlayers
 		// Identify the winner or candidates for a tie breaker
@@ -107,6 +122,7 @@ public class MainGame {
 			}
 			topCardPlayers.add(player);
 		}
+		return topCardPlayers;
 	}
 
 	private static HandRank identifyTopHand(List<Player> playersWithCards, List<Player> topHandPlayers) {

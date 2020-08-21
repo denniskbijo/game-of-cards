@@ -61,7 +61,7 @@ public class Player {
 	 * 
 	 * @return
 	 */
-	public String showPlayerCards() {
+	public String showPlayerHand() {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(name).append(" Hand: ").append(System.lineSeparator());
 
