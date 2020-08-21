@@ -51,4 +51,17 @@ class PlayerTest {
 		assertTrue(player.calculateHandRank(cards).equals(HandRank.TRAIL));
 	}
 
+	@Test
+	void testIsSequence() {
+		Player player = new Player(NAME);
+		List<Card> cards = new ArrayList<>();
+		cards.add(new Card(Suit.DIAMONDS, Rank.JACK));
+		cards.add(new Card(Suit.SPADES, Rank.KING));
+		cards.add(new Card(Suit.HEARTS, Rank.QUEEN));
+		cards.sort(Card.rankComparator);
+		player.setCards(cards);
+
+		assertTrue(player.calculateHandRank(cards).equals(HandRank.SEQUENCE));
+	}
+
 }
