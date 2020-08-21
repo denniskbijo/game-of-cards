@@ -67,8 +67,41 @@ public class MainGame {
 
 	private static void identifyWinner(List<Player> playersWithCards) {
 		// Identify Top Hands
-		HandRank handRank = null;
 		List<Player> topHandPlayers = new ArrayList<>();
+		HandRank handRank = identifyTopHand(playersWithCards, topHandPlayers);
+
+		// Identify Players with Top Card if the highest rank is HIGHCARD
+		if (topHandPlayers.size() > 1 || handRank.equals(HandRank.HIGHCARD)) {
+			List<Player> topCardPlayers = new ArrayList<>();
+			identifyTopCard(playersWithCards, topCardPlayers);
+			if (topCardPlayers.size() > 1) {
+				System.out.println("There is a tie between " + topCardPlayers.size());
+			} else {
+				System.out.println("The winner is: " + topCardPlayers.get(0));
+			}
+
+		} else {
+			System.out.println("The winner is: " + topHandPlayers.get(0));
+		}
+	}
+
+	private static void identifyTopCard(List<Player> playersWithCards, List<Player> topCardPlayers) {
+		Rank topCardRank = null;
+		// Check the top card among finalPlayers
+		// Identify the winner or candidates for a tie breaker
+		for (Player player : playersWithCards) {
+			Rank newTopCardRank = player.getTopCard(player.getCards()).getRank();
+			// Check if the new TopCard is bigger than previous one
+			if (topCardRank == null || newTopCardRank.getValue() < topCardRank.getValue()) {
+				topCardRank = newTopCardRank;
+				topCardPlayers.clear();
+			}
+			topCardPlayers.add(player);
+		}
+	}
+
+	private static HandRank identifyTopHand(List<Player> playersWithCards, List<Player> topHandPlayers) {
+		HandRank handRank = null;
 		// Identify the winner or candidates for a tie breaker
 		for (Player player : playersWithCards) {
 			HandRank newHandRank = player.calculateHandRank(player.getCards());
@@ -81,31 +114,7 @@ public class MainGame {
 			}
 			topHandPlayers.add(player);
 		}
-
-		List<Player> topCardPlayers = new ArrayList<>();
-		// Identify Players with Top Card if the highest rank is HIGHCARD
-		if (handRank.equals(HandRank.HIGHCARD)) {
-			// Check the top card among finalPlayers
-			Rank topCardRank = null;
-			// Identify the winner or candidates for a tie breaker
-			for (Player player : playersWithCards) {
-				Rank newTopCardRank = player.getTopCard(player.getCards()).getRank();
-				// Check if the new TopCard is bigger than previous one
-				if (topCardRank == null || newTopCardRank.getValue() < topCardRank.getValue()) {
-					topCardRank = newTopCardRank;
-					topCardPlayers.clear();
-				}
-				topCardPlayers.add(player);
-			}
-			if (topCardPlayers.size() > 1) {
-				System.out.println("There is a tie between " + topCardPlayers.size());
-			} else {
-				System.out.println("The winner is: " + topCardPlayers.get(0));
-			}
-
-		} else {
-			System.out.println("The winner is: " + topHandPlayers.get(0));
-		}
+		return handRank;
 	}
 
 }
