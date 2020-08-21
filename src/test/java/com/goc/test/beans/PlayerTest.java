@@ -142,4 +142,20 @@ class PlayerTest {
 		assertTrue(!player.calculateHandRank(cards).equals(HandRank.HIGHCARD));
 	}
 
+	@Test
+	void testGetTopCard() {
+		Player player = new Player(NAME);
+		List<Card> cards = new ArrayList<>();
+		cards.add(new Card(Suit.DIAMONDS, Rank.THREE));
+		Card topCard = new Card(Suit.SPADES, Rank.KING);
+		cards.add(topCard);
+		cards.add(new Card(Suit.HEARTS, Rank.QUEEN));
+		cards.sort(Card.rankComparator);
+		player.setCards(cards);
+
+		Card returnedTopCard = player.getTopCard(cards);
+		System.out.println(returnedTopCard);
+		assertTrue(returnedTopCard.equals(topCard));
+	}
+
 }
