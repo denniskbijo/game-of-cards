@@ -99,8 +99,9 @@ public class MainGame {
 	 * 
 	 * @param topCardPlayers
 	 * @param cardDeck
+	 * @return
 	 */
-	private static void initiateTieBreaker(List<Player> topCardPlayers, CardDeck cardDeck) {
+	private static Player initiateTieBreaker(List<Player> topCardPlayers, CardDeck cardDeck) {
 		StringBuilder stringBuilder = new StringBuilder();
 		int round = 1;
 		while (topCardPlayers.size() > 1) {
@@ -116,6 +117,7 @@ public class MainGame {
 			round++;
 		}
 		System.out.println("The tiebreaker winner is: " + topCardPlayers.get(0));
+		return topCardPlayers.get(0);
 
 
 	}
