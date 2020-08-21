@@ -116,4 +116,30 @@ class PlayerTest {
 		assertTrue(!player.calculateHandRank(cards).equals(HandRank.PAIR));
 	}
 
+	@Test
+	void testIsHighCard() {
+		Player player = new Player(NAME);
+		List<Card> cards = new ArrayList<>();
+		cards.add(new Card(Suit.DIAMONDS, Rank.THREE));
+		cards.add(new Card(Suit.SPADES, Rank.KING));
+		cards.add(new Card(Suit.HEARTS, Rank.QUEEN));
+		cards.sort(Card.rankComparator);
+		player.setCards(cards);
+
+		assertTrue(player.calculateHandRank(cards).equals(HandRank.HIGHCARD));
+	}
+
+	@Test
+	void testIsNotHighCard() {
+		Player player = new Player(NAME);
+		List<Card> cards = new ArrayList<>();
+		cards.add(new Card(Suit.DIAMONDS, Rank.JACK));
+		cards.add(new Card(Suit.SPADES, Rank.JACK));
+		cards.add(new Card(Suit.HEARTS, Rank.QUEEN));
+		cards.sort(Card.rankComparator);
+		player.setCards(cards);
+
+		assertTrue(!player.calculateHandRank(cards).equals(HandRank.HIGHCARD));
+	}
+
 }
