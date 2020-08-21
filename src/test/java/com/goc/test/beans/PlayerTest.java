@@ -38,4 +38,17 @@ class PlayerTest {
 		assertTrue(hand.equals(player.showPlayerHand()));
 	}
 
+	@Test
+	void testIsTrail() {
+		Player player = new Player(NAME);
+		List<Card> cards = new ArrayList<>();
+		cards.add(new Card(Suit.DIAMONDS, Rank.JACK));
+		cards.add(new Card(Suit.SPADES, Rank.JACK));
+		cards.add(new Card(Suit.HEARTS, Rank.JACK));
+		cards.sort(Card.rankComparator);
+		player.setCards(cards);
+
+		assertTrue(player.calculateHandRank(cards).equals(HandRank.TRAIL));
+	}
+
 }
