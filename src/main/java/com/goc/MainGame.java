@@ -60,22 +60,26 @@ public class MainGame {
 			System.out.println(player.showPlayerCards());
 		}
 
-		identifyWinner(playersWithCards);
+		identifyWinner(playersWithCards, cardDeck);
 
 
 	}
 
-	private static void identifyWinner(List<Player> playersWithCards) {
+	private static void identifyWinner(List<Player> playersWithCards,CardDeck cardDeck) {
 		// Identify Top Hands
 		List<Player> topHandPlayers = new ArrayList<>();
 		HandRank handRank = identifyTopHand(playersWithCards, topHandPlayers);
 
-		// Identify Players with Top Card if the highest rank is HIGHCARD
+		// Check if there's a tie between top hands or the highest rank is HIGHCARD
 		if (topHandPlayers.size() > 1 || handRank.equals(HandRank.HIGHCARD)) {
+			// Identify Players with Top Card
 			List<Player> topCardPlayers = new ArrayList<>();
 			identifyTopCard(playersWithCards, topCardPlayers);
+			
 			if (topCardPlayers.size() > 1) {
 				System.out.println("There is a tie between " + topCardPlayers.size());
+				//Initiate tie breaker by drawing cards from deck for topCardPlayers
+				initiateTieBreaker(topCardPlayers, cardDeck);
 			} else {
 				System.out.println("The winner is: " + topCardPlayers.get(0));
 			}
@@ -83,6 +87,11 @@ public class MainGame {
 		} else {
 			System.out.println("The winner is: " + topHandPlayers.get(0));
 		}
+	}
+
+	private static void initiateTieBreaker(List<Player> topCardPlayers, CardDeck cardDeck) {
+		// TODO Auto-generated method stub
+
 	}
 
 	private static void identifyTopCard(List<Player> playersWithCards, List<Player> topCardPlayers) {
