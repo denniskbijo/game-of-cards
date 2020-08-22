@@ -43,7 +43,7 @@ public class GameSession {
 		cardDeck.shuffle();
 
 		// Deal the cards
-		cardDeck.dealCards(players, noOfCards, cardDeck.getCards());
+		cardDeck.dealCards(players, noOfCards);
 
 		// Show Player Hands
 
@@ -105,8 +105,8 @@ public class GameSession {
 
 			LOGGER.info("Tiebreaker Round: {}", round);
 			// Draw card for each player
-			cardDeck.shuffle();
-			cardDeck.dealCards(topCardPlayers, 1, cardDeck.getCards());
+			cardDeck.dealCards(topCardPlayers, 1);
+
 			LOGGER.info("Player Hands: {}", topCardPlayers);
 			// Find the players with Highest Cards
 			topCardPlayers = identifyTopCard(topCardPlayers);

@@ -28,7 +28,7 @@ class CardDeckTest {
 		players.add(new Player("Test3"));
 		players.add(new Player("Test4"));
 		int numberOfCards = 1;
-		cardDeck.dealCards(players, numberOfCards, cardDeck.getCards());
+		cardDeck.dealCards(players, numberOfCards);
 		boolean isCardsDealt = true;
 		List<Card> dealtCards = new ArrayList<>();
 		for (Player player : players) {
