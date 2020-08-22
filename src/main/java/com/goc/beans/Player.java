@@ -116,14 +116,16 @@ public class Player {
 		// HighCard is the lowest rank
 		HandRank playerHandRank = null;
 
-		if (isTrail(cards)) {
-			playerHandRank = HandRank.TRAIL;
-		} else if (isSequence(cards)) {
-			playerHandRank = HandRank.SEQUENCE;
-		} else if (isPair(cards)) {
-			playerHandRank = HandRank.PAIR;
-		} else {
-			playerHandRank = HandRank.HIGHCARD;
+		if (cards.size() > 2) {
+			if (isTrail(cards)) {
+				playerHandRank = HandRank.TRAIL;
+			} else if (isSequence(cards)) {
+				playerHandRank = HandRank.SEQUENCE;
+			} else if (isPair(cards)) {
+				playerHandRank = HandRank.PAIR;
+			} else {
+				playerHandRank = HandRank.HIGHCARD;
+			}
 		}
 		return playerHandRank;
 	}
