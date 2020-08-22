@@ -1,6 +1,6 @@
 package com.goc.test.game;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import com.goc.beans.Card;
 import com.goc.beans.CardDeck;
 import com.goc.beans.Player;
+import com.goc.game.GameSession;
 import com.goc.util.Rank;
 import com.goc.util.Suit;
 
@@ -23,7 +24,7 @@ import com.goc.util.Suit;
  * @author denniskbijo
  *
  */
-class MainGameTest {
+class GameSessionTest {
 
 	private static List<Player> testPlayers = null;
 	private static List<Card> highCard = null;
@@ -34,20 +35,12 @@ class MainGameTest {
 	private static CardDeck cardDeck = null;
 
 	/**
-	 * Setup the variables for MainGameTest
+	 * Setup the variables for GameSessionTest
 	 */
 	@BeforeAll
 	static void initAll() {
 		//Initialise test players
 		testPlayers = new ArrayList<>();
-		Player ronaldo = new Player("C Ronaldo");
-		Player messi = new Player("L Messi");
-		Player henry = new Player("T O'Henry");
-		Player zidane = new Player("Z Zidane");
-		testPlayers.add(ronaldo);
-		testPlayers.add(messi);
-		testPlayers.add(henry);
-		testPlayers.add(zidane);
 		// Initialise Card Deck
 		cardDeck = new CardDeck();
 		// Initialise Test Hands
@@ -75,11 +68,21 @@ class MainGameTest {
 
 	@Test
 	void testIdentifyWinner() {
-	}
+		GameSession game = new GameSession();
+		Player ronaldo = new Player("C Ronaldo");
+		Player messi = new Player("L Messi");
+		Player henry = new Player("T O'Henry");
+		Player zidane = new Player("Z Zidane");
+		ronaldo.setCards(highCard);
+		messi.setCards(highCard);
+		henry.setCards(highCard);
+		zidane.setCards(pair);
+		testPlayers.add(ronaldo);
+		testPlayers.add(messi);
+		testPlayers.add(henry);
+		testPlayers.add(zidane);
 
-	@Test
-	void testCannotIdentifyWinner() {
-		fail("a failing test");
+		assertEquals(zidane, game.identifyWinner(testPlayers, cardDeck));
 	}
 
 	@Test
