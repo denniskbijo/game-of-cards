@@ -1,4 +1,4 @@
-package com.goc.test;
+package com.goc.test.game;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
