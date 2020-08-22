@@ -37,10 +37,7 @@ public class GameSession {
 	}
 
 	public CardDeck dealCardsToPlayers(List<Player> players, int noOfCards) {
-		LOGGER.info("Shuffling cards. The Players are ready!");
-		for (Player player : players) {
-			LOGGER.info(player);
-		}
+		LOGGER.info("The Players are ready! %n {}", players.toString());
 		CardDeck cardDeck = new CardDeck();
 		// Shuffle the cards
 		cardDeck.shuffle();
@@ -49,9 +46,7 @@ public class GameSession {
 		cardDeck.dealCards(players, noOfCards, cardDeck.getCards());
 
 		// Show Player Hands
-		for (Player player : players) {
-			LOGGER.info(player.showPlayerHand());
-		}
+
 		return cardDeck;
 	}
 
@@ -63,6 +58,7 @@ public class GameSession {
 	 * @return Winner of the game.
 	 */
 	public Player identifyWinner(List<Player> playersWithCards, CardDeck cardDeck) {
+		LOGGER.info("The Cards are dealt! {} {}", System.lineSeparator(), playersWithCards.toString());
 		Player winner = null;
 		// Identify Top Hands
 		List<Player> topHandPlayers = new ArrayList<>();
@@ -74,7 +70,7 @@ public class GameSession {
 			List<Player> topCardPlayers = identifyTopCard(playersWithCards);
 
 			if (topCardPlayers.size() > 1) {
-				LOGGER.info("There is a tie between: %d", topCardPlayers.size());
+				LOGGER.info("There is a tie between: {}", topCardPlayers);
 				// Initiate tie breaker by drawing cards from deck for topCardPlayers
 				winner = initiateTieBreaker(topCardPlayers, cardDeck);
 			} else {
@@ -85,6 +81,7 @@ public class GameSession {
 		} else {
 			winner = topHandPlayers.get(0);
 		}
+		LOGGER.info("Winner is: {}", winner);
 		return winner;
 	}
 
@@ -160,7 +157,6 @@ public class GameSession {
 			} else if (newHandRank.getValue() == handRank.getValue()) {
 				// Adds player to existing topHandPlayers
 				topHandPlayers.add(player);
-
 			}
 		}
 		return handRank;
