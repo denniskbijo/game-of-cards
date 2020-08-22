@@ -124,18 +124,18 @@ public class Player {
 		boolean isSequence = true;
 		// Check if its a Sequence (Consecutive ranks)
 
-		// Set the prevRank to a negative rank
-		int prevRank = -1;
+		// Set the prevRank to zero
+		int prevRank = 0;
 
 		// Iterate through the hand
 		for (int i = 0; i < hand.size(); i++) {
 			// Get rank of card
 			int currentRank = hand.get(i).getRank().getValue();
-			// Check if the rank of card is exactly one more than the previous one.
+			// Check if the rank of card is exactly one less than the previous one.
 
-			if (prevRank < 0 || currentRank == (prevRank + 1)) {
-				// If prevRank is negative , then this is the first card and if the rank of card
-				// is just before the rank of the previous card, a sequence is possible.
+			if (prevRank == 0 || currentRank == (prevRank - 1)) {
+				// If prevRank is zero , then this is the first card and if the rank of card
+				// is just after the rank of the previous card, a sequence is possible.
 				prevRank = currentRank;
 			} else {
 				return false;
