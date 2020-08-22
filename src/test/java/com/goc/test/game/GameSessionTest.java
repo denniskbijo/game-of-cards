@@ -154,8 +154,8 @@ class GameSessionTest {
 		testPlayers.add(messi);
 		testPlayers.add(henry);
 		testPlayers.add(zidane);
-
-		assertEquals(messi, game.identifyWinner(testPlayers, cardDeck));
+		Player winner = game.identifyWinner(testPlayers, cardDeck);
+		assertEquals(1, winner.getCards().size());
 
 	}
 
