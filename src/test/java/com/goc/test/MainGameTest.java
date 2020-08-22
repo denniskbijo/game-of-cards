@@ -13,12 +13,22 @@ import org.junit.jupiter.api.Test;
 import com.goc.beans.CardDeck;
 import com.goc.beans.Player;
 
+/**
+ * Tests the card game scenarios where multiple HandRanks are checked to find
+ * the winner.
+ * 
+ * @author denniskbijo
+ *
+ */
 class MainGameTest {
 
 	private static List<Player> testPlayers = null;
 
 	private static CardDeck cardDeck = null;
 
+	/**
+	 * Setup the variables for MainGameTest
+	 */
 	@BeforeAll
 	static void initAll() {
 		//Initialise test players

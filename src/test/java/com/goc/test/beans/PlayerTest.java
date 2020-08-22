@@ -13,6 +13,12 @@ import com.goc.util.HandRank;
 import com.goc.util.Rank;
 import com.goc.util.Suit;
 
+/**
+ * Tests the methods of {@link Player}
+ * 
+ * @author denniskbijo
+ *
+ */
 class PlayerTest {
 	private static final String NAME = "Dennis";
 

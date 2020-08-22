@@ -10,6 +10,12 @@ import org.junit.jupiter.api.Test;
 import com.goc.beans.CardDeck;
 import com.goc.beans.Player;
 
+/**
+ * Tests the methods for {@link CardDeck}
+ * 
+ * @author denniskbijo
+ *
+ */
 class CardDeckTest {
 
 	@Test
