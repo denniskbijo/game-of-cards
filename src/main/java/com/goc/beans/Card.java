@@ -40,8 +40,12 @@ public class Card {
 	 * Comparator to compare two cards by Rank
 	 */
 	public static final Comparator<Card> rankComparator = (Card left, Card right) -> {
-		if (left.getRank().getValue() < right.getRank().getValue()) {
+		int leftCardRank = left.getRank().getValue();
+		int rightCardRank = right.getRank().getValue();
+		if (leftCardRank > rightCardRank) {
 			return -1;
+		} else if (leftCardRank == rightCardRank) {
+			return 0;
 		} else {
 			return 1;
 		}
