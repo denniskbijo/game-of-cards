@@ -67,7 +67,7 @@ class GameSessionTest {
 		pair = new ArrayList<>();
 		pair.add(new Card(Suit.SPADES, Rank.EIGHT));
 		pair.add(new Card(Suit.CLUBS, Rank.TEN));
-		pair.add(new Card(Suit.CLUBS, Rank.TEN));
+		pair.add(new Card(Suit.DIAMONDS, Rank.TEN));
 	}
 
 	@BeforeEach

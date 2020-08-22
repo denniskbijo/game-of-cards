@@ -42,7 +42,7 @@ public class MainGame {
 
 		Player winner = game.identifyWinner(players, cardDeck);
 
-		LOGGER.info("The winner is: %s", winner);
+		LOGGER.info("The winner is: {}", winner);
 
 
 	}

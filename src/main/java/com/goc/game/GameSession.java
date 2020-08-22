@@ -29,7 +29,7 @@ public class GameSession {
 
 		Scanner scan = new Scanner(System.in);
 		for (int i = 0; i < playerCount; i++) {
-			LOGGER.info("Player %d: ", (i + 1));
+			LOGGER.info("Player {}: ", (i + 1));
 			players.add(new Player(scan.next()));
 		}
 		scan.close();
@@ -37,12 +37,10 @@ public class GameSession {
 	}
 
 	public CardDeck dealCardsToPlayers(List<Player> players, int noOfCards) {
-		LOGGER.info("The Players are ready! %n {}", players.toString());
+		LOGGER.info("The Players are ready! {}", players);
 		CardDeck cardDeck = new CardDeck();
-		// Shuffle the cards
-		cardDeck.shuffle();
 
-		// Deal the cards
+		// Shuffle and Deal the cards
 		cardDeck.dealCards(players, noOfCards);
 
 		// Show Player Hands
