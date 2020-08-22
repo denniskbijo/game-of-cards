@@ -50,22 +50,22 @@ class MainGameTest {
 		testPlayers.add(zidane);
 		// Initialise Card Deck
 		cardDeck = new CardDeck();
-		// Init Test Hands
+		// Initialise Test Hands
 		highCard = new ArrayList<>();
 		highCard.add(new Card(Suit.CLUBS, Rank.EIGHT));
 		highCard.add(new Card(Suit.CLUBS, Rank.NINE));
 		highCard.add(new Card(Suit.CLUBS, Rank.THREE));
-		// Init Trail Hand
+		// Initialise Trail Hand
 		trail = new ArrayList<>();
 		trail.add(new Card(Suit.DIAMONDS, Rank.EIGHT));
 		trail.add(new Card(Suit.CLUBS, Rank.NINE));
 		trail.add(new Card(Suit.CLUBS, Rank.THREE));
-		// Init Sequence
+		// Initialise Sequence
 		sequence = new ArrayList<>();
 		sequence.add(new Card(Suit.SPADES, Rank.EIGHT));
 		sequence.add(new Card(Suit.CLUBS, Rank.NINE));
 		sequence.add(new Card(Suit.CLUBS, Rank.TEN));
-		// Init Pair
+		// Initialise Pair
 		pair = new ArrayList<>();
 		pair.add(new Card(Suit.SPADES, Rank.EIGHT));
 		pair.add(new Card(Suit.CLUBS, Rank.NINE));
