@@ -63,7 +63,7 @@ public class Player {
 	 */
 	public String showPlayerHand() {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(name).append(" Hand: ").append(System.lineSeparator());
+		stringBuilder.append(" Hand: ").append(System.lineSeparator());
 
 		// Sort cards by Rank
 		cards.sort(Card.rankComparator);
@@ -166,7 +166,9 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return name;
+		StringBuilder builder = new StringBuilder();
+		builder.append("Name: ").append(name).append(this.showPlayerHand());
+		return builder.toString();
 	}
 
 	/**
