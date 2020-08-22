@@ -32,18 +32,9 @@ public class MainGame {
 	private static final int NO_OF_CARDS = 3;
 
 	public static void main(String[] args) {
-		List<Player> players = new ArrayList<>();
+		List<Player> players = readPlayerNames();
+
 		CardDeck cardDeck = new CardDeck();
-
-		System.out.println("WELCOME TO THE CARD GAME\n");
-		System.out.println("Enter the four players' name below");
-
-		Scanner scan = new Scanner(System.in);
-		for (int i = 0; i < NO_OF_PLAYERS; i++) {
-			players.add(new Player(scan.next()));
-		}
-		scan.close();
-
 		// Shuffle the cards
 		cardDeck.shuffle();
 
@@ -63,6 +54,20 @@ public class MainGame {
 		identifyWinner(playersWithCards, cardDeck);
 
 
+	}
+
+	private static List<Player> readPlayerNames() {
+		List<Player> players = new ArrayList<>();
+
+		System.out.println("WELCOME TO THE CARD GAME\n");
+		System.out.println("Enter the four players' name below");
+
+		Scanner scan = new Scanner(System.in);
+		for (int i = 0; i < NO_OF_PLAYERS; i++) {
+			players.add(new Player(scan.next()));
+		}
+		scan.close();
+		return players;
 	}
 
 	/**

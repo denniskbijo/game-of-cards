@@ -154,7 +154,6 @@ class PlayerTest {
 		player.setCards(cards);
 
 		Card returnedTopCard = player.getTopCard(cards);
-		System.out.println(returnedTopCard);
 		assertTrue(returnedTopCard.equals(topCard));
 	}
 
