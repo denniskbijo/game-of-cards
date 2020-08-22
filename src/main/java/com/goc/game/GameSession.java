@@ -96,23 +96,19 @@ public class GameSession {
 	 * @return
 	 */
 	private Player initiateTieBreaker(List<Player> topCardPlayers, CardDeck cardDeck) {
-		StringBuilder stringBuilder = new StringBuilder();
 		int round = 1;
 		while (topCardPlayers.size() > 1) {
-			stringBuilder.append("Tiebreaker Round: ").append(round).append(System.lineSeparator());
+			LOGGER.info("Tiebreaker Round: {}", round);
 			cardDeck.shuffle();
 			// Draw card for each player
 			cardDeck.dealCards(topCardPlayers, 1, cardDeck.getCards());
 			for (Player player : topCardPlayers) {
-				stringBuilder.append(player.showPlayerHand()).append(System.lineSeparator());
-
+				LOGGER.info(player.showPlayerHand());
 			}
 			topCardPlayers = identifyTopCard(topCardPlayers);
 			round++;
 		}
-		stringBuilder.append("%n The tiebreaker winner is: " + topCardPlayers.get(0));
-
-		LOGGER.info(stringBuilder.toString());
+		LOGGER.info("The tiebreaker winner is: {} ", topCardPlayers.get(0));
 		return topCardPlayers.get(0);
 
 	}
