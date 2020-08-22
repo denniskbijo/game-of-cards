@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -32,6 +33,10 @@ class GameSessionTest {
 	private static List<Card> sequence = null;
 	private static List<Card> pair = null;
 
+	private Player ronaldo = new Player("C Ronaldo");
+	private Player messi = new Player("L Messi");
+	private Player henry = new Player("T O'Henry");
+	private Player zidane = new Player("Z Zidane");
 	private static CardDeck cardDeck = null;
 
 	/**
@@ -45,7 +50,7 @@ class GameSessionTest {
 		cardDeck = new CardDeck();
 		// Initialise Test Hands
 		highCard = new ArrayList<>();
-		highCard.add(new Card(Suit.CLUBS, Rank.KING));
+		highCard.add(new Card(Suit.CLUBS, Rank.TEN));
 		highCard.add(new Card(Suit.CLUBS, Rank.NINE));
 		highCard.add(new Card(Suit.CLUBS, Rank.THREE));
 		// Initialise Trail Hand
@@ -65,14 +70,15 @@ class GameSessionTest {
 		pair.add(new Card(Suit.CLUBS, Rank.TEN));
 	}
 
+	@BeforeEach
+	void initEach() {
+		testPlayers.clear();
+	}
 
 	@Test
+	@Disabled
 	void testIdentifyWinnerWithPair() {
 		GameSession game = new GameSession();
-		Player ronaldo = new Player("C Ronaldo");
-		Player messi = new Player("L Messi");
-		Player henry = new Player("T O'Henry");
-		Player zidane = new Player("Z Zidane");
 		ronaldo.setCards(highCard);
 		messi.setCards(highCard);
 		henry.setCards(highCard);
@@ -86,12 +92,9 @@ class GameSessionTest {
 	}
 
 	@Test
+	@Disabled
 	void testIdentifyWinnerWithTrail() {
 		GameSession game = new GameSession();
-		Player ronaldo = new Player("C Ronaldo");
-		Player messi = new Player("L Messi");
-		Player henry = new Player("T O'Henry");
-		Player zidane = new Player("Z Zidane");
 		ronaldo.setCards(trail);
 		messi.setCards(sequence);
 		henry.setCards(highCard);
@@ -102,6 +105,38 @@ class GameSessionTest {
 		testPlayers.add(zidane);
 
 		assertEquals(ronaldo, game.identifyWinner(testPlayers, cardDeck));
+	}
+
+	@Test
+	void testIdentifyWinnerWithSequence() {
+		GameSession game = new GameSession();
+		ronaldo.setCards(pair);
+		messi.setCards(sequence);
+		henry.setCards(highCard);
+		zidane.setCards(pair);
+		testPlayers.add(ronaldo);
+		testPlayers.add(messi);
+		testPlayers.add(henry);
+		testPlayers.add(zidane);
+
+		assertEquals(messi, game.identifyWinner(testPlayers, cardDeck));
+	}
+
+	@Test
+	void testIdentifyWinnerWithHighCard() {
+		GameSession game = new GameSession();
+		ronaldo.setCards(highCard);
+		messi.setCards(highCard);
+		zidane.setCards(highCard);
+		highCard.remove(0);
+		highCard.add(new Card(Suit.SPADES, Rank.KING));
+		henry.setCards(highCard);
+		testPlayers.add(ronaldo);
+		testPlayers.add(messi);
+		testPlayers.add(henry);
+		testPlayers.add(zidane);
+
+		assertEquals(henry, game.identifyWinner(testPlayers, cardDeck));
 	}
 
 	@Test
