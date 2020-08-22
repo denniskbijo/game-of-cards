@@ -6,8 +6,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.goc.beans.CardDeck;
-import com.goc.beans.GameSession;
 import com.goc.beans.Player;
+import com.goc.game.GameSession;
 
 /**
  * Basic Rules: - Use a standard deck of cards (no Joker). - Each player is
@@ -35,8 +35,8 @@ public class MainGame {
 
 	public static void main(String[] args) {
 		GameSession game = new GameSession();
-		List<Player> players = game.readPlayerNames(NO_OF_PLAYERS);
 
+		List<Player> players = game.readPlayerNames(NO_OF_PLAYERS);
 
 		CardDeck cardDeck = game.dealCardsToPlayers(players, NO_OF_CARDS);
 

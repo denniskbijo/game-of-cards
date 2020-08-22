@@ -1,4 +1,4 @@
-package com.goc.beans;
+package com.goc.game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,8 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.goc.beans.CardDeck;
+import com.goc.beans.Player;
 import com.goc.util.HandRank;
 import com.goc.util.Rank;
 
