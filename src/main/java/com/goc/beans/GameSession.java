@@ -47,4 +47,24 @@ public class GameSession {
 		scan.close();
 		return players;
 	}
+
+	public CardDeck dealCardsToPlayers(List<Player> players, int noOfCards) {
+		System.out.println("Shuffling cards. The Players are ready!");
+		for (Player player : players) {
+			System.out.println(player);
+		}
+		CardDeck cardDeck = new CardDeck();
+		// Shuffle the cards
+		cardDeck.shuffle();
+
+		// Deal the cards
+		cardDeck.dealCards(players, noOfCards, cardDeck.getCards());
+
+		// Show Player Hands
+		for (Player player : players) {
+			System.out.println(player.showPlayerHand());
+		}
+		return cardDeck;
+	}
+
 }

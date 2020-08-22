@@ -35,24 +35,10 @@ public class MainGame {
 		GameSession game = new GameSession();
 		List<Player> players = game.readPlayerNames(NO_OF_PLAYERS);
 
-		CardDeck cardDeck = new CardDeck();
-		// Shuffle the cards
-		cardDeck.shuffle();
 
-		System.out.println("Shuffling cards. The Players are ready!");
-		for (Player player : players) {
-			System.out.println(player);
-		}
+		CardDeck cardDeck = game.dealCardsToPlayers(players, NO_OF_CARDS);
 
-		// Deal the cards
-		List<Player> playersWithCards = cardDeck.dealCards(players, NO_OF_CARDS, cardDeck.getCards());
-
-		// Show Player Hands
-		for (Player player : playersWithCards) {
-			System.out.println(player.showPlayerHand());
-		}
-
-		identifyWinner(playersWithCards, cardDeck);
+		identifyWinner(players, cardDeck);
 
 
 	}
