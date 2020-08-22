@@ -71,7 +71,8 @@ public class Player {
 	 * Removes the cards dealt to the player
 	 */
 	public void resetHand() {
-		this.cards.clear();
+		this.cards = new ArrayList<>();
+		this.handRank = null;
 	}
 
 	/**
@@ -159,12 +160,12 @@ public class Player {
 		// Iterate through the hand
 		for (int i = 0; i < hand.size(); i++) {
 			// Get rank of card
-			int currentRank = hand.get(i).getRank().getValue();
-			// Check if the rank of card is exactly one less than the previous one.
+			int currentRank = hand.get(i).getRank().getSequenceValue();
+			// Check if the sequence rank of card is exactly one less than the previous one.
 
 			if (prevRank == 0 || currentRank == (prevRank - 1)) {
-				// If prevRank is zero , then this is the first card and if the rank of card
-				// is just after the rank of the previous card, a sequence is possible.
+				// If prevRank is zero , then this is the first card and if the sequence rank of
+				// card is just after the rank of the previous card, a sequence is possible.
 				prevRank = currentRank;
 			} else {
 				return false;

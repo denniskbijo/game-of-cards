@@ -25,7 +25,7 @@ public class GameSession {
 
 	public List<Player> readPlayerNames(int playerCount) {
 		List<Player> players = new ArrayList<>();
-		LOGGER.info("WELCOME TO THE CARD GAME %n Enter the Player Names: ");
+		LOGGER.info("WELCOME TO THE CARD GAME {} Enter the Player Names: ", System.lineSeparator());
 
 		Scanner scan = new Scanner(System.in);
 		for (int i = 0; i < playerCount; i++) {
@@ -133,11 +133,11 @@ public class GameSession {
 		for (Player player : playersWithCards) {
 			Rank newTopCardRank = player.getTopCard(player.getCards()).getRank();
 			// Check if the new TopCard is bigger than previous one
-			if (topCardRank == null || newTopCardRank.getValue() > topCardRank.getValue()) {
+			if (topCardRank == null || newTopCardRank.getFaceValue() > topCardRank.getFaceValue()) {
 				topCardRank = newTopCardRank;
 				topCardPlayers.clear();
 				topCardPlayers.add(player);
-			} else if (newTopCardRank.getValue() == topCardRank.getValue()) {
+			} else if (newTopCardRank.getFaceValue() == topCardRank.getFaceValue()) {
 				topCardPlayers.add(player);
 			}
 		}
