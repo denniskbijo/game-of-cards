@@ -50,10 +50,39 @@ public class Player {
 		this.handRank = handRank;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Name: ").append(name).append(this.showPlayerHand());
+		return builder.toString();
+	}
 	// CUSTOM FUNCTIONS
 
+	/**
+	 * Adds a card to player's hand
+	 * 
+	 * @param card
+	 */
 	public void addCardToHand(Card card) {
 		this.cards.add(card);
+	}
+
+	/**
+	 * Removes the cards dealt to the player
+	 */
+	public void resetHand() {
+		this.cards.clear();
+	}
+
+	/**
+	 * Gets the top card in a Hand.
+	 * 
+	 * @param hand
+	 * @return
+	 */
+	public Card getTopCard(List<Card> hand) {
+		hand.sort(Card.rankComparator);
+		return hand.get(0);
 	}
 
 	/**
@@ -162,23 +191,5 @@ public class Player {
 
 		}
 		return isTrail;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Name: ").append(name).append(this.showPlayerHand());
-		return builder.toString();
-	}
-
-	/**
-	 * Gets the top card in a Hand.
-	 * 
-	 * @param hand
-	 * @return
-	 */
-	public Card getTopCard(List<Card> hand) {
-		hand.sort(Card.rankComparator);
-		return hand.get(0);
 	}
 }
