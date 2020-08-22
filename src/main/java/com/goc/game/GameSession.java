@@ -94,17 +94,25 @@ public class GameSession {
 	 */
 	private Player initiateTieBreaker(List<Player> topCardPlayers, CardDeck cardDeck) {
 		int round = 1;
-		cardDeck.shuffle();
 		while (topCardPlayers.size() > 1) {
+			// Shuffles the cards
+			cardDeck.shuffle();
+
+			// Reset Hands of all Players
+			for (Player player : topCardPlayers) {
+				player.resetHand();
+			}
+
 			LOGGER.info("Tiebreaker Round: {}", round);
 			// Draw card for each player
+			cardDeck.shuffle();
 			cardDeck.dealCards(topCardPlayers, 1, cardDeck.getCards());
-			for (Player player : topCardPlayers) {
-				LOGGER.info(player.showPlayerHand());
-			}
+			LOGGER.info("Player Hands: {}", topCardPlayers);
+			// Find the players with Highest Cards
 			topCardPlayers = identifyTopCard(topCardPlayers);
 			round++;
 		}
+
 		LOGGER.info("The tiebreaker winner is: {} ", topCardPlayers.get(0));
 		return topCardPlayers.get(0);
 

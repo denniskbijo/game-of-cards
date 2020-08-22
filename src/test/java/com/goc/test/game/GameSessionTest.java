@@ -124,6 +124,7 @@ class GameSessionTest {
 	}
 
 	@Test
+	@Disabled
 	void testIdentifyWinnerWithHighCard() {
 		GameSession game = new GameSession();
 		List<Card> highestHand = new ArrayList<>();
@@ -143,8 +144,18 @@ class GameSessionTest {
 	}
 
 	@Test
-	@Disabled("Only for Tiebreaker case")
 	void testTieBreaker() {
+		GameSession game = new GameSession();
+		ronaldo.setCards(pair);
+		messi.setCards(pair);
+		henry.setCards(pair);
+		zidane.setCards(pair);
+		testPlayers.add(ronaldo);
+		testPlayers.add(messi);
+		testPlayers.add(henry);
+		testPlayers.add(zidane);
+
+		assertEquals(messi, game.identifyWinner(testPlayers, cardDeck));
 
 	}
 
