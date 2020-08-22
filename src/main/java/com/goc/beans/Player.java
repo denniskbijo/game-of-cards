@@ -101,8 +101,8 @@ public class Player {
 		for (Card card : cards) {
 			stringBuilder.append(card).append(System.lineSeparator());
 		}
-		HandRank handRank = calculateHandRank(cards);
-		stringBuilder.append(handRank).append(System.lineSeparator());
+		// Adds HandRank to player hand
+		stringBuilder.append(calculateHandRank(cards)).append(System.lineSeparator());
 
 		return stringBuilder.toString();
 	}
