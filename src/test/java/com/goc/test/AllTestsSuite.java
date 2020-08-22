@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
  */
 @RunWith(JUnitPlatform.class)
 @SuiteDisplayName("Game Of Cards Test Suite")
-@SelectPackages("com.goc.test.game")
+@SelectPackages("com.goc.test")
 public class AllTestsSuite {
 
 }

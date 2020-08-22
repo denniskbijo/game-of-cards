@@ -76,7 +76,6 @@ class GameSessionTest {
 	}
 
 	@Test
-	@Disabled
 	void testIdentifyWinnerWithPair() {
 		GameSession game = new GameSession();
 		ronaldo.setCards(highCard);
@@ -92,7 +91,6 @@ class GameSessionTest {
 	}
 
 	@Test
-	@Disabled
 	void testIdentifyWinnerWithTrail() {
 		GameSession game = new GameSession();
 		ronaldo.setCards(trail);
@@ -108,7 +106,6 @@ class GameSessionTest {
 	}
 
 	@Test
-	@Disabled
 	void testIdentifyWinnerWithSequence() {
 		GameSession game = new GameSession();
 		ronaldo.setCards(pair);
