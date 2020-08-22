@@ -97,9 +97,9 @@ public class GameSession {
 	 */
 	private Player initiateTieBreaker(List<Player> topCardPlayers, CardDeck cardDeck) {
 		int round = 1;
+		cardDeck.shuffle();
 		while (topCardPlayers.size() > 1) {
 			LOGGER.info("Tiebreaker Round: {}", round);
-			cardDeck.shuffle();
 			// Draw card for each player
 			cardDeck.dealCards(topCardPlayers, 1, cardDeck.getCards());
 			for (Player player : topCardPlayers) {
@@ -154,9 +154,14 @@ public class GameSession {
 			// Check if the new HandRank is bigger than previous one
 			if (handRank == null || newHandRank.getValue() < handRank.getValue()) {
 				handRank = newHandRank;
+				// Clears existing topHandPlayers as there is a higher Hand
 				topHandPlayers.clear();
+				topHandPlayers.add(player);
+			} else if (newHandRank.getValue() == handRank.getValue()) {
+				// Adds player to existing topHandPlayers
+				topHandPlayers.add(player);
+
 			}
-			topHandPlayers.add(player);
 		}
 		return handRank;
 	}
