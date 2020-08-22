@@ -48,10 +48,17 @@ public class CardDeck {
 		Collections.shuffle(cards, rand);
 	}
 
-	public List<Player> dealCards(List<Player> players, int numOfCardsPerPlayer, List<Card> cards) {
+	/**
+	 * Shuffles the cards and deals them to players.
+	 * 
+	 * @param players
+	 * @param numOfCardsPerPlayer
+	 * @return
+	 */
+	public List<Player> dealCards(List<Player> players, int numOfCardsPerPlayer) {
 		// Find total number of cards to be dealt
 		int cardsToBeDealt = players.size() * numOfCardsPerPlayer;
-
+		shuffle();
 		// Iterate through shuffled cards until cardsToBeDealt are distributed
 		for (int count = 0; count < cardsToBeDealt; count++) {
 			// Find the player eligible for the card
