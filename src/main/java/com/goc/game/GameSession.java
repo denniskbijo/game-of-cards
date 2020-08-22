@@ -125,11 +125,13 @@ public class GameSession {
 		for (Player player : playersWithCards) {
 			Rank newTopCardRank = player.getTopCard(player.getCards()).getRank();
 			// Check if the new TopCard is bigger than previous one
-			if (topCardRank == null || newTopCardRank.getValue() < topCardRank.getValue()) {
+			if (topCardRank == null || newTopCardRank.getValue() > topCardRank.getValue()) {
 				topCardRank = newTopCardRank;
 				topCardPlayers.clear();
+				topCardPlayers.add(player);
+			} else if (newTopCardRank.getValue() == topCardRank.getValue()) {
+				topCardPlayers.add(player);
 			}
-			topCardPlayers.add(player);
 		}
 		return topCardPlayers;
 	}
