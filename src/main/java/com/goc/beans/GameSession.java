@@ -14,27 +14,6 @@ import com.goc.util.Rank;
  *
  */
 public class GameSession {
-
-	private List<Player> players = new ArrayList<>();
-
-	private Player winner = null;
-
-	public List<Player> getPlayers() {
-		return players;
-	}
-
-	public void setPlayers(List<Player> players) {
-		this.players = players;
-	}
-
-	public Player getWinner() {
-		return winner;
-	}
-
-	public void setWinner(Player winner) {
-		this.winner = winner;
-	}
-
 	// CUSTOM METHODS
 
 	public List<Player> readPlayerNames(int playerCount) {
@@ -91,15 +70,13 @@ public class GameSession {
 			if (topCardPlayers.size() > 1) {
 				System.out.println("There is a tie between " + topCardPlayers.size());
 				// Initiate tie breaker by drawing cards from deck for topCardPlayers
-				initiateTieBreaker(topCardPlayers, cardDeck);
+				winner = initiateTieBreaker(topCardPlayers, cardDeck);
 			} else {
-				System.out.println("The winner is: " + topCardPlayers.get(0));
 				winner = topCardPlayers.get(0);
 
 			}
 
 		} else {
-			System.out.println("The winner is: " + topHandPlayers.get(0));
 			winner = topHandPlayers.get(0);
 		}
 		return winner;
