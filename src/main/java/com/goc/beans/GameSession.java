@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.goc.util.HandRank;
 import com.goc.util.Rank;
 
@@ -14,16 +17,17 @@ import com.goc.util.Rank;
  *
  */
 public class GameSession {
+
+	private static final Logger LOGGER = LogManager.getLogger(GameSession.class);
 	// CUSTOM METHODS
 
 	public List<Player> readPlayerNames(int playerCount) {
 		List<Player> players = new ArrayList<>();
-
-		System.out.println("WELCOME TO THE CARD GAME\n");
-		System.out.println("Enter the four players' name below");
+		LOGGER.info("WELCOME TO THE CARD GAME %n Enter the Player Names: ");
 
 		Scanner scan = new Scanner(System.in);
 		for (int i = 0; i < playerCount; i++) {
+			LOGGER.info("Player %d: ", (i + 1));
 			players.add(new Player(scan.next()));
 		}
 		scan.close();
@@ -31,9 +35,9 @@ public class GameSession {
 	}
 
 	public CardDeck dealCardsToPlayers(List<Player> players, int noOfCards) {
-		System.out.println("Shuffling cards. The Players are ready!");
+		LOGGER.info("Shuffling cards. The Players are ready!");
 		for (Player player : players) {
-			System.out.println(player);
+			LOGGER.info(player);
 		}
 		CardDeck cardDeck = new CardDeck();
 		// Shuffle the cards
@@ -44,7 +48,7 @@ public class GameSession {
 
 		// Show Player Hands
 		for (Player player : players) {
-			System.out.println(player.showPlayerHand());
+			LOGGER.info(player.showPlayerHand());
 		}
 		return cardDeck;
 	}
@@ -68,7 +72,7 @@ public class GameSession {
 			List<Player> topCardPlayers = identifyTopCard(playersWithCards);
 
 			if (topCardPlayers.size() > 1) {
-				System.out.println("There is a tie between " + topCardPlayers.size());
+				LOGGER.info("There is a tie between " + topCardPlayers.size());
 				// Initiate tie breaker by drawing cards from deck for topCardPlayers
 				winner = initiateTieBreaker(topCardPlayers, cardDeck);
 			} else {
@@ -104,7 +108,7 @@ public class GameSession {
 			topCardPlayers = identifyTopCard(topCardPlayers);
 			round++;
 		}
-		System.out.println("The tiebreaker winner is: " + topCardPlayers.get(0));
+		LOGGER.info("The tiebreaker winner is: " + topCardPlayers.get(0));
 		return topCardPlayers.get(0);
 
 	}

@@ -2,6 +2,9 @@ package com.goc;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.goc.beans.CardDeck;
 import com.goc.beans.GameSession;
 import com.goc.beans.Player;
@@ -25,6 +28,8 @@ import com.goc.beans.Player;
  *
  */
 public class MainGame {
+	private static final Logger LOGGER = LogManager.getLogger(MainGame.class);
+
 	private static final int NO_OF_PLAYERS = 4;
 	private static final int NO_OF_CARDS = 3;
 
@@ -35,7 +40,9 @@ public class MainGame {
 
 		CardDeck cardDeck = game.dealCardsToPlayers(players, NO_OF_CARDS);
 
-		game.identifyWinner(players, cardDeck);
+		Player winner = game.identifyWinner(players, cardDeck);
+
+		LOGGER.info("The winner is: %s", winner);
 
 
 	}
