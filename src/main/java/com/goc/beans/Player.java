@@ -93,7 +93,7 @@ public class Player {
 	 */
 	public String showPlayerHand() {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(" Hand: ").append(System.lineSeparator());
+		stringBuilder.append(System.lineSeparator()).append("Hand: ");
 
 		// Sort cards by Rank
 		cards.sort(Card.rankComparator);
@@ -102,7 +102,8 @@ public class Player {
 			stringBuilder.append(card).append(System.lineSeparator());
 		}
 		// Adds HandRank to player hand
-		stringBuilder.append(calculateHandRank(cards)).append(System.lineSeparator());
+		HandRank playerHand = calculateHandRank(cards);
+		stringBuilder.append(playerHand != null ? playerHand : "").append(System.lineSeparator());
 
 		return stringBuilder.toString();
 	}
