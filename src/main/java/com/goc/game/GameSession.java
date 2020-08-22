@@ -74,7 +74,7 @@ public class GameSession {
 			List<Player> topCardPlayers = identifyTopCard(playersWithCards);
 
 			if (topCardPlayers.size() > 1) {
-				LOGGER.info("There is a tie between " + topCardPlayers.size());
+				LOGGER.info("There is a tie between: %d", topCardPlayers.size());
 				// Initiate tie breaker by drawing cards from deck for topCardPlayers
 				winner = initiateTieBreaker(topCardPlayers, cardDeck);
 			} else {
@@ -104,13 +104,15 @@ public class GameSession {
 			// Draw card for each player
 			cardDeck.dealCards(topCardPlayers, 1, cardDeck.getCards());
 			for (Player player : topCardPlayers) {
-				stringBuilder.append(player.showPlayerHand());
+				stringBuilder.append(player.showPlayerHand()).append(System.lineSeparator());
 
 			}
 			topCardPlayers = identifyTopCard(topCardPlayers);
 			round++;
 		}
-		LOGGER.info("The tiebreaker winner is: " + topCardPlayers.get(0));
+		stringBuilder.append("%n The tiebreaker winner is: " + topCardPlayers.get(0));
+
+		LOGGER.info(stringBuilder.toString());
 		return topCardPlayers.get(0);
 
 	}

@@ -45,14 +45,14 @@ class GameSessionTest {
 		cardDeck = new CardDeck();
 		// Initialise Test Hands
 		highCard = new ArrayList<>();
-		highCard.add(new Card(Suit.CLUBS, Rank.EIGHT));
+		highCard.add(new Card(Suit.CLUBS, Rank.KING));
 		highCard.add(new Card(Suit.CLUBS, Rank.NINE));
 		highCard.add(new Card(Suit.CLUBS, Rank.THREE));
 		// Initialise Trail Hand
 		trail = new ArrayList<>();
-		trail.add(new Card(Suit.DIAMONDS, Rank.EIGHT));
-		trail.add(new Card(Suit.CLUBS, Rank.NINE));
-		trail.add(new Card(Suit.CLUBS, Rank.THREE));
+		trail.add(new Card(Suit.DIAMONDS, Rank.SEVEN));
+		trail.add(new Card(Suit.CLUBS, Rank.SEVEN));
+		trail.add(new Card(Suit.CLUBS, Rank.SEVEN));
 		// Initialise Sequence
 		sequence = new ArrayList<>();
 		sequence.add(new Card(Suit.SPADES, Rank.EIGHT));
@@ -61,13 +61,13 @@ class GameSessionTest {
 		// Initialise Pair
 		pair = new ArrayList<>();
 		pair.add(new Card(Suit.SPADES, Rank.EIGHT));
-		pair.add(new Card(Suit.CLUBS, Rank.NINE));
+		pair.add(new Card(Suit.CLUBS, Rank.TEN));
 		pair.add(new Card(Suit.CLUBS, Rank.TEN));
 	}
 
 
 	@Test
-	void testIdentifyWinner() {
+	void testIdentifyWinnerWithPair() {
 		GameSession game = new GameSession();
 		Player ronaldo = new Player("C Ronaldo");
 		Player messi = new Player("L Messi");
@@ -83,6 +83,25 @@ class GameSessionTest {
 		testPlayers.add(zidane);
 
 		assertEquals(zidane, game.identifyWinner(testPlayers, cardDeck));
+	}
+
+	@Test
+	void testIdentifyWinnerWithTrail() {
+		GameSession game = new GameSession();
+		Player ronaldo = new Player("C Ronaldo");
+		Player messi = new Player("L Messi");
+		Player henry = new Player("T O'Henry");
+		Player zidane = new Player("Z Zidane");
+		ronaldo.setCards(trail);
+		messi.setCards(sequence);
+		henry.setCards(highCard);
+		zidane.setCards(pair);
+		testPlayers.add(ronaldo);
+		testPlayers.add(messi);
+		testPlayers.add(henry);
+		testPlayers.add(zidane);
+
+		assertEquals(ronaldo, game.identifyWinner(testPlayers, cardDeck));
 	}
 
 	@Test
