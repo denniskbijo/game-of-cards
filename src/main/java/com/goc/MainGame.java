@@ -2,9 +2,9 @@ package com.goc;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import com.goc.beans.CardDeck;
+import com.goc.beans.GameSession;
 import com.goc.beans.Player;
 import com.goc.util.HandRank;
 import com.goc.util.Rank;
@@ -32,7 +32,8 @@ public class MainGame {
 	private static final int NO_OF_CARDS = 3;
 
 	public static void main(String[] args) {
-		List<Player> players = readPlayerNames();
+		GameSession game = new GameSession();
+		List<Player> players = game.readPlayerNames(NO_OF_PLAYERS);
 
 		CardDeck cardDeck = new CardDeck();
 		// Shuffle the cards
@@ -54,20 +55,6 @@ public class MainGame {
 		identifyWinner(playersWithCards, cardDeck);
 
 
-	}
-
-	private static List<Player> readPlayerNames() {
-		List<Player> players = new ArrayList<>();
-
-		System.out.println("WELCOME TO THE CARD GAME\n");
-		System.out.println("Enter the four players' name below");
-
-		Scanner scan = new Scanner(System.in);
-		for (int i = 0; i < NO_OF_PLAYERS; i++) {
-			players.add(new Player(scan.next()));
-		}
-		scan.close();
-		return players;
 	}
 
 	/**

@@ -2,6 +2,7 @@ package com.goc.beans;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Represents a card game session with players
@@ -31,4 +32,19 @@ public class GameSession {
 		this.winner = winner;
 	}
 
+	// CUSTOM METHODS
+
+	public List<Player> readPlayerNames(int playerCount) {
+		List<Player> players = new ArrayList<>();
+
+		System.out.println("WELCOME TO THE CARD GAME\n");
+		System.out.println("Enter the four players' name below");
+
+		Scanner scan = new Scanner(System.in);
+		for (int i = 0; i < playerCount; i++) {
+			players.add(new Player(scan.next()));
+		}
+		scan.close();
+		return players;
+	}
 }
